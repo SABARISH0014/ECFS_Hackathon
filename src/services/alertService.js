@@ -1,8 +1,8 @@
-import product from '../models/Product.js';
+const Product = require('../models/Product');
 
-export const checkLowStock = async () => {
+exports.getLowStockAlerts = async () => {
 
-    const products = await product.find();
+    const products = await Product.find();
 
     const lowStock = products.filter(
         (product) => product.quantity < product.minStock

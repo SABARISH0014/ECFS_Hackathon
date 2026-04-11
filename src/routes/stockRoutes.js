@@ -3,5 +3,7 @@ const router = express.Router();
 
 const { stockIn, stockOut } = require('../controllers/stockController');
 
-router.post('/stock/in', stockIn);
-router.post('/stock/out', stockOut);
+router.post('/in', stockIn);
+router.post('/out', stockOut);
+
+module.exports = router;

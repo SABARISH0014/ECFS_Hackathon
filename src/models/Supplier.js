@@ -1,6 +1,6 @@
-const moongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-const supplierSchema = new moongoose.schema({
+const supplierSchema = new mongoose.Schema({
     name : {
         type : String,
         required : true,
@@ -23,3 +23,7 @@ const supplierSchema = new moongoose.schema({
 },{
     timestamps : true
 });
+
+const Supplier = mongoose.model("Supplier", supplierSchema);
+
+module.exports = Supplier;

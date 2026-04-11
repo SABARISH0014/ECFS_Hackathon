@@ -1,15 +1,15 @@
-import Transaction from '..models/Transaction.js';
-import { getLowStockProducts } from '../services/alertService.js';
+const Transaction = require('../models/Transaction');
+const alertService = require('../services/alertService');
 
 
 //get transaction by productId
 
-export const getTransactionsByProduct = async (req, res) => {
+exports.getTransactionsByProduct = async (req, res) => {
 
     try{
         const { productId } = req.params;
 
-        const transactions = await Transaction.find({ productId });
+        const transactions = await Transaction.find({ productID: productId });
 
         res.status(200).json(transactions);
         
@@ -20,25 +20,30 @@ export const getTransactionsByProduct = async (req, res) => {
 
 //create transaction using await
 
-export const createTransaction = async (req, res) => {
+exports.createTransaction = async (req, res) => {
 
     try{
-        await Transaction.create({
-            productId,
+        const { productID, type, quantity } = req.body;
+
+        const transaction = await Transaction.create({
+            productID,
             type,
             quantity,
         });
+
+        res.status(201).json(transaction);
     }catch(error){
         console.error("Transaction Error:", error.message);
+        res.status(500).json({ message: error.message });
     }
 };
 
 //get lowStock Alert
 
-export const getLowStockAlert = async (req, res) => {
+exports.getLowStockAlert = async (req, res) => {
 
     try{
-        const lowStockProducts = await getLowStockProducts();
+        const lowStockProducts = await alertService.getLowStockAlerts();
 
         res.status(200).json(lowStockProducts);
 
@@ -46,10 +51,4 @@ export const getLowStockAlert = async (req, res) => {
 
         res.status(500).json({ message: error.message });
     }
-};
-
-export {
-    getTransactionsByProduct,
-    createTransaction,
-    getLowStockAlert
 };

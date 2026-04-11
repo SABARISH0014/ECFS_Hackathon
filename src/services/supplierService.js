@@ -1,4 +1,4 @@
-const Supplier = required("../models/Suppliers.js");
+const Supplier = require("../models/Supplier");
 
 exports.createSupplier=async(data)=>{
     const supplier=await Supplier.create(data);
@@ -10,17 +10,17 @@ exports.getSuppliers=async()=>{
     return suppliers;
 }
 
-exports.getSuppliersById=async(id)=>{
-    const suppliers=await Supplier.findById(id);
-    return suppliers;
+exports.getSupplierById=async(id)=>{
+    const supplier=await Supplier.findById(id);
+    return supplier;
 }
 
-exports.updateSuppliers=async(id,data)=>{
-    const suppliers=await Supplier.findByIdAndUpdate(id,data,{new:true});
-    return suppliers;
+exports.updateSupplier=async(id,data)=>{
+    const supplier=await Supplier.findByIdAndUpdate(id,data,{new:true});
+    return supplier;
 }
 
-exports.deleteSuppliers=async(id)=>{
-    const suppliers=await Suppliers.findByIdAndDelete(id);
-    return suppliers
+exports.deleteSupplier=async(id)=>{
+    const supplier=await Supplier.findByIdAndDelete(id);
+    return supplier;
 }

@@ -1,9 +1,10 @@
-import express from 'express';
-import { getTransactionsByProduct, getLowStockAlert } from '..controllers/transactionController.js';
+const express = require('express');
+const transactionController = require('../controllers/transactionController');
 
 const router = express.Router();
 
-router.get("/transactions/:productId", getTransactionsByProduct);
-router.get("/alerts/low-stock", getLowStockAlert);
+router.get("/:productId", transactionController.getTransactionsByProduct);
+router.post("/", transactionController.createTransaction);
+router.get("/alerts/low-stock", transactionController.getLowStockAlert);
 
-export default router;
+module.exports = router;

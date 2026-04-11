@@ -35,5 +35,5 @@ exports.getTotalInventoryValue = async () => {
 };
 
 exports.getTransactionHistory = async () => {
-  return await Transaction.find().populate("productId");
+  return await Transaction.find().populate("productID");
 };
