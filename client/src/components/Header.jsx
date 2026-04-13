@@ -25,8 +25,11 @@ export default function Header() {
   const navigate = useNavigate();
   const title = getTitle(location.pathname);
 
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/login", { replace: true });
   };
 
@@ -37,7 +40,7 @@ export default function Header() {
       </div>
       <div className="profile-panel">
         <div>
-          <p className="profile-name">Sabarish P.</p>
+          <p className="profile-name">{user.name || "User"}</p>
           <p className="profile-role">Admin</p>
         </div>
         <button type="button" className="logout-button" onClick={logout}>

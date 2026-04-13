@@ -4,6 +4,9 @@ const morgan = require("morgan");
 
 const app = express();
 
+// Disable ETags to prevent 304 responses
+app.disable('etag');
+
 // Middleware
 app.use(cors());
 app.use(express.json());
