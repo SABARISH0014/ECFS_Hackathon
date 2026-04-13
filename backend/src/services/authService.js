@@ -42,7 +42,14 @@ const login = async (data) => {
     { expiresIn: "1d" }
   );
 
-  return token;
+  return {
+    token,
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email
+    }
+  };
 
 };
 
